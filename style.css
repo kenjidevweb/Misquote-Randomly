@@ -2,15 +2,12 @@
   font-family: "PixelMPlus10";
   src: url("fonts/PixelMplus10-Regular.woff") format("woff");
 }
-
 @font-face {
   font-family: "PixelMPlus10";
   src: url("fonts/PixelMplus10-Regular.woff2") format("woff2");
 }
-
 body {
   font-family: "PixelMPlus10";
 }
 
-h1 {
-}
+/*# sourceMappingURL=style.css.map */
