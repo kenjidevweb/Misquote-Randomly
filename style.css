@@ -6,8 +6,102 @@
   font-family: "PixelMPlus10";
   src: url("fonts/PixelMplus10-Regular.woff2") format("woff2");
 }
+
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* declaring this makes it easier to style using the custom properties */
+  --clr-light: var(--clr-primary);
+  --clr-primary: #eee;
+  --clr-secondary: #d65a31;
+  --clr-tertiary: #393e64;
+}
+
+.dark {
+  --clr-light: #eee;
+  --clr-primary: #222831;
+  --clr-secondary: #393e64;
+  --clr-tertiary: #d65a31;
+}
+
+.dark * {
+  color: var(--clr-light);
+  background-color: var(--clr-primary);
+}
+
 body {
   font-family: "PixelMPlus10";
 }
 
-/*# sourceMappingURL=style.css.map */
+header {
+  background-color: var(--clr-primary);
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.container--top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60px;
+}
+
+/* I am making the area of the element larger than it's content to make it easier to activate */
+
+.dark-toggle {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 30px;
+  height: 40px;
+  border: none;
+  background: none;
+  transition: 0.3s ease-in;
+}
+
+.dark-toggle::after {
+  content: "DARK";
+}
+
+.toggle__body {
+  font-size: 0.5625rem;
+  text-align: right;
+  color: var(--clr-light);
+  display: block;
+  position: relative;
+  width: 35px;
+  height: 16px;
+  border: 3px solid var(--clr-secondary);
+  border-radius: 160px;
+  background-color: var(--clr-secondary);
+}
+
+.toggle__indicator {
+  display: block;
+  position: absolute;
+  top: -5px;
+  left: -8px;
+  width: 20px;
+  height: 20px;
+  background-color: var(--clr-light);
+  border: 1px solid var(--clr-secondary);
+  border-radius: 50%;
+  transition: 0.5s;
+}
+
+.toggle__indicator.on {
+  left: 20px;
+}
+
+@media (prefers-color-scheme: dark) {
+}

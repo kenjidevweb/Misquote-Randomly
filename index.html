@@ -31,10 +31,14 @@
   </head>
   <body>
     <header>
-      <h1>They said that</h1>
-      <div class="dark-container">
-        <button class="dark-toggle"></button>
-        <p>DARK</p>
+      <div class="container container--top">
+        <h1>They said that</h1>
+        <!-- Not all screen reader users are blind. (aria-label) -->
+        <button class="dark-toggle" aria-label="dark mode toggle">
+          <span class="toggle__body">
+            <span class="toggle__indicator"> </span>
+          </span>
+        </button>
       </div>
     </header>
     <script src="index.js"></script>
