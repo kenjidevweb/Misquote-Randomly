@@ -19,23 +19,24 @@
   /* declaring this makes it easier to style using the custom properties */
   --clr-light: var(--clr-primary);
   --clr-primary: #eee;
-  --clr-secondary: #d65a31;
-  --clr-tertiary: #393e64;
+  --clr-secondary: #222831;
+  --clr-tertiary: #d65a31;
 }
 
 .dark {
   --clr-primary: #222831;
-  --clr-secondary: #393e64;
-  --clr-tertiary: #d65a31;
+  --clr-secondary: #eee;
+  --clr-tertiary: #393e64;
 }
 
 .dark * {
-  color: var(--clr-light);
+  color: var(--clr-secondary);
   background-color: var(--clr-primary);
 }
 
 body {
   font-family: "PixelMPlus10";
+  color: var(--clr-secondary);
 }
 
 header {
@@ -78,14 +79,13 @@ header {
 .toggle__body {
   font-size: 0.5625rem;
   text-align: right;
-  color: var(--clr-light);
   display: block;
   position: relative;
   width: 35px;
   height: 16px;
-  border: 3px solid var(--clr-secondary);
+  border: 3px solid var(--clr-tertiary);
   border-radius: 160px;
-  background-color: var(--clr-secondary);
+  background-color: var(--clr-tertiary);
 }
 
 .toggle__indicator {
@@ -96,7 +96,8 @@ header {
   width: 20px;
   height: 20px;
   background-color: var(--clr-light);
-  border: 1px solid var(--clr-secondary);
+  border: 1px solid var(--clr-light);
+  box-shadow: 0 0 4px 0 rgb(0 0 0 / 75%);
   border-radius: 50%;
   transition: 0.5s;
 }
@@ -114,6 +115,7 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  align-items: center;
 }
 
 .sub-title {
@@ -121,26 +123,66 @@ header {
 }
 
 .card {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  background: url(imgs/example.jpg);
-  background-position: center;
-  text-align: center;
+  background: url(imgs/mtfuji.jpg);
+  background-position: right;
+  background-repeat: no-repeat;
+  background-size: cover;
   max-width: 320px;
   height: 450px;
-  border: 1px solid var(--clr-secondary);
+  border: 1px solid var(--clr-tertiary);
+  border-radius: 12px;
+}
+
+.black-filter {
+  position: absolute;
+  background-color: #121212;
+  opacity: 0.5;
+  width: 100%;
+  height: 100%;
   border-radius: 12px;
 }
 
 .quote,
 .quote-author {
+  z-index: 1;
+  color: var(--clr-light);
   font-size: 1.5rem;
   background: none;
 }
 
-@media (min-width: 900px) {
-  .container--introduction {
-    align-items: center;
-  }
+.quote {
+  text-align: left;
+}
+
+.quote-author {
+  text-align: right;
+}
+
+.container--buttons {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 0.5em;
+  max-width: 320px;
+}
+
+.card__button {
+  border: none;
+  fill: var(--clr-secondary);
+}
+
+.card__button__icon {
+  display: block;
+  margin: 1em auto;
+}
+
+.new::after {
+  content: "NEW";
+}
+
+.download::after {
+  content: "SAVE";
 }

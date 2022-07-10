@@ -30,7 +30,7 @@ darkModeBtn.addEventListener("click", () => {
   document.body.classList.toggle("dark");
   if (!darkMode) {
     localStorage.setItem("darkMode", "enabled");
-  } else if (darkMode) {
+  } else {
     localStorage.removeItem("darkMode");
   }
 });
