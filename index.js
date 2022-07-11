@@ -7,6 +7,10 @@ const toggleIndicator = document.querySelector(".toggle__indicator");
 */
 
 if (darkMode) {
+  document.addEventListener("DOMContentLoaded", () => {
+    let delayTransitions = document.getElementById("delay-transitions");
+    delayTransitions.removeAttribute("id", "delay-transitions");
+  });
   toggleIndicator.classList.add("on");
   document.body.classList.add("dark");
 } else {

@@ -1,10 +1,12 @@
 @font-face {
   font-family: "PixelMPlus10";
   src: url("fonts/PixelMplus10-Regular.woff") format("woff");
+  font-display: swap;
 }
 @font-face {
   font-family: "PixelMPlus10";
   src: url("fonts/PixelMplus10-Regular.woff2") format("woff2");
+  font-display: swap;
 }
 
 *,
@@ -29,13 +31,17 @@
   --clr-tertiary: #393e64;
 }
 
-.dark * {
-  color: var(--clr-secondary);
-  background-color: var(--clr-primary);
+#delay-transitions {
+  transition: none;
 }
 
 body {
   font-family: "PixelMPlus10";
+  color: var(--clr-secondary);
+}
+
+body.dark {
+  background-color: var(--clr-primary);
   color: var(--clr-secondary);
 }
 
@@ -69,11 +75,11 @@ header {
   height: 40px;
   border: none;
   background: none;
-  transition: 0.3s ease-in;
 }
 
 .dark-toggle::after {
   content: "DARK";
+  color: var(--clr-secondary);
 }
 
 .toggle__body {
@@ -127,10 +133,7 @@ header {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
-  background: url(imgs/mtfuji.jpg);
-  background-position: right;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background: url(imgs/mtfuji.webp) right / cover no-repeat; /* to use background-size on the shorthand you need to use a "/" after declaring the background-position */
   max-width: 320px;
   height: 450px;
   border: 1px solid var(--clr-tertiary);
@@ -172,6 +175,8 @@ header {
 .card__button {
   border: none;
   fill: var(--clr-secondary);
+  background-color: var(--clr-primary);
+  color: var(--clr-secondary);
 }
 
 .card__button__icon {
