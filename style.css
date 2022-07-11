@@ -31,7 +31,7 @@
   --clr-tertiary: #393e64;
 }
 
-#delay-transitions {
+#delay-transition {
   transition: none;
 }
 

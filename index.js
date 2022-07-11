@@ -6,11 +6,12 @@ const toggleIndicator = document.querySelector(".toggle__indicator");
    it will check whether the user prefers light or dark themes and style itself accordingly.
 */
 
+document.addEventListener("DOMContentLoaded", () => {
+  let delayTransitions = document.getElementById("delay-transition");
+  delayTransitions.removeAttribute("id", "delay-transition");
+});
+
 if (darkMode) {
-  document.addEventListener("DOMContentLoaded", () => {
-    let delayTransitions = document.getElementById("delay-transitions");
-    delayTransitions.removeAttribute("id", "delay-transitions");
-  });
   toggleIndicator.classList.add("on");
   document.body.classList.add("dark");
 } else {
