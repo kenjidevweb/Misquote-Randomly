@@ -32,6 +32,8 @@ if (darkMode) {
   }
 }
 
+/* toggling dark mode */
+
 darkModeBtn.addEventListener("click", () => {
   toggleIndicator.classList.toggle("on");
   document.body.classList.toggle("dark");
@@ -42,27 +44,57 @@ darkModeBtn.addEventListener("click", () => {
   }
 });
 
-/*
-  Get image for card background
-  documentation link for quick access (ctrl + click)
+const newQuote = async () => {
+  const quoteAuthor = document.querySelector(".quote-author");
+  const quote = document.querySelector(".quote");
+  const cardImg = document.querySelector(".card");
+
+  /*   
+  documentation link for quick access (ctrl + click the link)
+  https://goquotes.docs.apiary.io/# 
+  */
+
+  const resQuote = await fetch(
+    "https://goquotes-api.herokuapp.com/api/v1/random?count=2"
+  );
+  const dataQuote = await resQuote.json();
+  quote.textContent = `${dataQuote.quotes[0].text}`;
+  quoteAuthor.textContent = `- ${dataQuote.quotes[1].author}`;
+
+  /*
+  documentation link for quick access (ctrl + click the link)
   https://unsplash.com/documentation#search-photos 
-*/
+  */
 
-fetch(
-  "https://api.unsplash.com/search/photos?query=banana&per_page=1&orientation=portrait&client_id=kop-Le_jMIaVSWUr02BVHqUXsXC1NADHYKc2X8m_Owg"
-)
-  .then((res) => {
-    return res.json();
-  })
-  .then((imgData) => {
-    const cardImg = document.querySelector(".card");
-    cardImg.style.backgroundImage = `url(${imgData.results[0].urls.small})`;
-  })
-  .catch((e) => {
-    console.log(e);
+  const resImg = await fetch(
+    `https://api.unsplash.com/search/photos?query=${quoteAuthor.textContent}&per_page=1&orientation=portrait&client_id=kop-Le_jMIaVSWUr02BVHqUXsXC1NADHYKc2X8m_Owg`
+  );
+  const dataImg = await resImg.json();
+  cardImg.style.backgroundImage = `url(${dataImg.results[0].urls.small})`;
+};
+
+/* Animation on the new button */
+
+const newBtn = document.querySelector(".new");
+
+newBtn.addEventListener("click", () => {
+  const newBtnIcon = document.querySelector(".icon--new");
+  newBtnIcon.classList.add("new__clicked");
+
+  /* 
+    setting the animation name to none will stop the animation.
+    setting the animation name to empty quotes will make it fallback 
+    to the name we set on the css file. (making the animation start again)
+
+    using requestAnimationFrame and settingTimeout to 0 
+    fixes a problem with firefox.
+  */
+
+  newBtnIcon.style.animationName = "none";
+  requestAnimationFrame(() => {
+    setTimeout(() => {
+      newBtnIcon.style.animationName = "";
+    }, 0);
   });
-
-/*
-  Gets quote and quote author
-  Using RapidAPI
-*/
+  newQuote();
+});

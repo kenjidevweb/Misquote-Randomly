@@ -134,7 +134,7 @@ header {
   flex-direction: column;
   justify-content: space-around;
   background: url(imgs/mtfuji.webp) right / cover no-repeat; /* to use background-size on the shorthand you need to use a "/" after declaring the background-position */
-  max-width: 320px;
+  width: 320px;
   height: 450px;
   border: 1px solid var(--clr-tertiary);
   border-radius: 12px;
@@ -184,10 +184,23 @@ header {
   margin: 1em auto;
 }
 
+.new__clicked {
+  animation: rotate 1.5s;
+}
+
 .new::after {
   content: "NEW";
 }
 
 .download::after {
   content: "SAVE";
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(-180deg);
+  }
 }
