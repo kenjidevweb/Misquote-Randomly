@@ -1,12 +1,1 @@
-Goals for this project:
-Learn how to:
-
-bulletpoint implement API's using fetch and axios
-bulletpoint create Dark Mode
-receive file (a font in this case) and apply it on the quote
-
-newQuote isn't working properly, it's always showing the previous "quoteAuthor" image
-This is happening because
-
-1. both fetches are happening at the same time, so maybe the image "changes" before the quoteAuthor does
-2. It's some scope problem
+SOON

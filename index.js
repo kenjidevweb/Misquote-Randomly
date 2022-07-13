@@ -44,15 +44,12 @@ darkModeBtn.addEventListener("click", () => {
   }
 });
 
+// gets quotes misattribute them and gets an image based on the authors name
+
 const newQuote = async () => {
   const quoteAuthor = document.querySelector(".quote-author");
   const quote = document.querySelector(".quote");
   const cardImg = document.querySelector(".card");
-
-  /*   
-  documentation link for quick access (ctrl + click the link)
-  https://goquotes.docs.apiary.io/# 
-  */
 
   const resQuote = await fetch(
     "https://goquotes-api.herokuapp.com/api/v1/random?count=2"
@@ -61,11 +58,6 @@ const newQuote = async () => {
   quote.textContent = `${dataQuote.quotes[0].text}`;
   quoteAuthor.textContent = `- ${dataQuote.quotes[1].author}`;
 
-  /*
-  documentation link for quick access (ctrl + click the link)
-  https://unsplash.com/documentation#search-photos 
-  */
-
   const resImg = await fetch(
     `https://api.unsplash.com/search/photos?query=${quoteAuthor.textContent}&per_page=1&orientation=portrait&client_id=kop-Le_jMIaVSWUr02BVHqUXsXC1NADHYKc2X8m_Owg`
   );
@@ -73,28 +65,40 @@ const newQuote = async () => {
   cardImg.style.backgroundImage = `url(${dataImg.results[0].urls.small})`;
 };
 
-/* Animation on the new button */
+// Animation on the new button
 
 const newBtn = document.querySelector(".new");
-
 newBtn.addEventListener("click", () => {
   const newBtnIcon = document.querySelector(".icon--new");
+
   newBtnIcon.classList.add("new__clicked");
-
-  /* 
-    setting the animation name to none will stop the animation.
-    setting the animation name to empty quotes will make it fallback 
-    to the name we set on the css file. (making the animation start again)
-
-    using requestAnimationFrame and settingTimeout to 0 
-    fixes a problem with firefox.
-  */
-
-  newBtnIcon.style.animationName = "none";
+  newBtnIcon.style.animationName = "none"; // setting the animation name to none will stop the animation.
   requestAnimationFrame(() => {
+    // using requestAnimationFrame and settingTimeout to 0 fixes a problem with firefox.
     setTimeout(() => {
-      newBtnIcon.style.animationName = "";
-    }, 0);
+      newBtnIcon.style.animationName = ""; // setting the animation name to empty quotes will make it
+    }, 0); // fallback to the name we set on the css file. (making the animation start again)
   });
+
   newQuote();
+});
+
+// Function for downloading the quote
+
+const downloadQuote = () => {
+  const quoteImg = document.querySelector(".card");
+  /* "useCORS: true" enables saved online images to show up on the downloaded quote */
+  html2canvas(quoteImg, { useCORS: true }).then((canvas) => {
+    const base64img = canvas.toDataURL("quote/png");
+    var anchor = document.createElement("a");
+    anchor.setAttribute("href", base64img);
+    anchor.setAttribute("download", "quote.png");
+    anchor.click();
+    anchor.remove();
+  });
+};
+
+const downloadBtn = document.querySelector(".download");
+downloadBtn.addEventListener("click", () => {
+  downloadQuote();
 });

@@ -36,7 +36,7 @@
 }
 
 body {
-  font-family: "PixelMPlus10";
+  font-family: "PixelMPlus10", sans-serif;
   color: var(--clr-secondary);
 }
 
@@ -135,9 +135,8 @@ header {
   justify-content: space-around;
   background: url(imgs/mtfuji.webp) right / cover no-repeat; /* to use background-size on the shorthand you need to use a "/" after declaring the background-position */
   width: 320px;
-  height: 450px;
+  min-height: 450px; /* using min height fixes issue with larger quotes*/
   border: 1px solid var(--clr-tertiary);
-  border-radius: 12px;
 }
 
 .black-filter {
@@ -146,11 +145,11 @@ header {
   opacity: 0.5;
   width: 100%;
   height: 100%;
-  border-radius: 12px;
 }
 
 .quote,
 .quote-author {
+  position: relative; /* Fixes z-index when downloading the quote */
   z-index: 1;
   color: var(--clr-light);
   font-size: 1.5rem;
@@ -202,5 +201,16 @@ header {
   }
   to {
     transform: rotate(-180deg);
+  }
+}
+
+@media (prefers-reduced-motion) {
+  /* 
+    add all classes with animations here 
+    I'm assuming that the dark mode toggle 
+    won't be a problem.
+  */
+  .new__clicked {
+    animation: none;
   }
 }
