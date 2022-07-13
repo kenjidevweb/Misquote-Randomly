@@ -99,6 +99,16 @@ const downloadQuote = () => {
 };
 
 const downloadBtn = document.querySelector(".download");
+
 downloadBtn.addEventListener("click", () => {
   downloadQuote();
+});
+
+const fontToggleBtn = document.querySelector(".font");
+
+fontToggleBtn.addEventListener("click", () => {
+  const quoteFont = document.querySelector(".card");
+  const fontDisplay = document.querySelector(".font-icon");
+  quoteFont.classList.toggle("changeFont");
+  fontDisplay.classList.toggle("changeFont");
 });

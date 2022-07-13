@@ -180,7 +180,16 @@ header {
 
 .card__button__icon {
   display: block;
-  margin: 1em auto;
+  margin: 1rem auto;
+}
+
+.font-icon {
+  font-family: "PixelMPlus10", sans-serif;
+  min-height: 24px; /* To maintain the layout consistent when changing fonts */
+}
+
+.changeFont {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
 }
 
 .new__clicked {
@@ -193,6 +202,10 @@ header {
 
 .download::after {
   content: "SAVE";
+}
+
+.font::after {
+  content: "FONT";
 }
 
 @keyframes rotate {
