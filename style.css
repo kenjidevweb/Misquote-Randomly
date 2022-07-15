@@ -215,20 +215,20 @@ a {
   text-align: center;
 }
 
-.socials {
+.social {
   display: flex;
   justify-content: center;
   gap: 1em;
   width: 100%;
 }
 
-.socials__link:focus-within {
+.social__link:focus-within {
   border: 1px solid orange;
   outline: 1px solid white;
   border-radius: 2px;
 }
 
-.dark .socials__icon {
+.dark .social__icon {
   filter: invert(100%);
 }
 
