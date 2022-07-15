@@ -37,10 +37,6 @@
 
 body {
   font-family: "PixelMPlus10", sans-serif;
-  color: var(--clr-secondary);
-}
-
-body.dark {
   background-color: var(--clr-primary);
   color: var(--clr-secondary);
 }
@@ -61,6 +57,10 @@ header {
   justify-content: space-between;
   align-items: center;
   height: 60px;
+}
+
+a {
+  all: unset;
 }
 
 /* I am making the area of the element larger than it's content to make it easier to activate */
@@ -112,15 +112,9 @@ header {
   left: 20px;
 }
 
-.introduction {
-  background-color: var(--clr-primary);
-  height: calc(100vh - 60px);
-}
-
 .container--introduction {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
   align-items: center;
 }
 
@@ -176,6 +170,7 @@ header {
   fill: var(--clr-secondary);
   background-color: var(--clr-primary);
   color: var(--clr-secondary);
+  width: 35px;
 }
 
 .card__button__icon {
@@ -204,8 +199,37 @@ header {
   content: "SAVE";
 }
 
+.footer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1em;
+}
+
 .font::after {
   content: "FONT";
+}
+
+.footer-text {
+  text-align: center;
+}
+
+.socials {
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+  width: 100%;
+}
+
+.socials__link:focus-within {
+  border: 1px solid orange;
+  outline: 1px solid white;
+  border-radius: 2px;
+}
+
+.socials__icon {
+  filter: invert(100%);
 }
 
 @keyframes rotate {
