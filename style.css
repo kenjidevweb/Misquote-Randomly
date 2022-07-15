@@ -222,10 +222,15 @@ a {
   width: 100%;
 }
 
-.social__link:focus-within {
+.social__link:focus-visible {
   border: 1px solid orange;
   outline: 1px solid white;
   border-radius: 2px;
+}
+
+.social__icon {
+  width: 24px;
+  height: 24px;
 }
 
 .dark .social__icon {

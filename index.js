@@ -28,7 +28,7 @@ if (darkMode) {
     }
   } else {
     /* if not supported */
-    console.log("You should change browsers");
+    console.log("you should download google chrome");
   }
 }
 
@@ -50,19 +50,35 @@ const newQuote = async () => {
   const quoteAuthor = document.querySelector(".quote-author");
   const quote = document.querySelector(".quote");
   const cardImg = document.querySelector(".card");
-
-  const resQuote = await fetch(
-    "https://goquotes-api.herokuapp.com/api/v1/random?count=2"
-  );
-  const dataQuote = await resQuote.json();
-  quote.textContent = `${dataQuote.quotes[0].text}`;
-  quoteAuthor.textContent = `- ${dataQuote.quotes[1].author}`;
-
-  const resImg = await fetch(
-    `https://api.unsplash.com/search/photos?query=${quoteAuthor.textContent}&per_page=1&orientation=portrait&client_id=kop-Le_jMIaVSWUr02BVHqUXsXC1NADHYKc2X8m_Owg`
-  );
-  const dataImg = await resImg.json();
-  cardImg.style.backgroundImage = `url(${dataImg.results[0].urls.small})`;
+  // try to use goquotes api, if it fails use type fit api instead, this is a fallback in case one of them dies
+  try {
+    const resQuote = await fetch(
+      "https://goquotes-api.herokuapp.com/api/v1/random?count=2"
+    );
+    const dataQuote = await resQuote.json();
+    quote.textContent = `${dataQuote.quotes[0].text}`;
+    quoteAuthor.textContent = `- ${dataQuote.quotes[1].author}`;
+  } catch (e) {
+    const resQuoteBackup = await fetch(`https://type.fit/api/quotes`);
+    const dataQuoteBackup = await resQuoteBackup.json();
+    console.log("error with goquotes api");
+    quote.textContent = `${
+      dataQuoteBackup[Math.floor(Math.random() * 333)].text // generate a number from 0 to 333 and use it as the index of the json we're getting data from
+    }`;
+    quoteAuthor.textContent = `- ${
+      dataQuoteBackup[Math.floor(Math.random() * 333)].author
+    }`;
+  }
+  try {
+    const resImg = await fetch(
+      `https://api.unsplash.com/search/photos?query=${quoteAuthor.textContent}&per_page=1&orientation=portrait&client_id=kop-Le_jMIaVSWUr02BVHqUXsXC1NADHYKc2X8m_Owg`
+    );
+    const dataImg = await resImg.json();
+    cardImg.style.backgroundImage = `url(${dataImg.results[0].urls.small})`;
+  } catch (e) {
+    console.log("error with unsplash api");
+    cardImg.style.backgroundImage = `url(https://source.unsplash.com/random/300x200?sig=${Math.random()}`;
+  }
 };
 
 // Animation on the new button
