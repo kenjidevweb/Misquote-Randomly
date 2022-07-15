@@ -228,7 +228,7 @@ a {
   border-radius: 2px;
 }
 
-.socials__icon {
+.dark .socials__icon {
   filter: invert(100%);
 }
 
