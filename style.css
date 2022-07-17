@@ -75,6 +75,7 @@ a {
   height: 40px;
   border: none;
   background: none;
+  cursor: pointer;
 }
 
 .dark-toggle::after {
@@ -171,6 +172,7 @@ a {
   background-color: var(--clr-primary);
   color: var(--clr-secondary);
   width: 35px;
+  cursor: pointer;
 }
 
 .card__button__icon {
@@ -199,7 +201,7 @@ a {
   content: "SAVE";
 }
 
-.footer-container {
+.credits-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -211,7 +213,7 @@ a {
   content: "FONT";
 }
 
-.footer-text {
+.credits-text {
   text-align: center;
 }
 
@@ -231,6 +233,7 @@ a {
 .social__icon {
   width: 24px;
   height: 24px;
+  cursor: pointer;
 }
 
 .dark .social__icon {
