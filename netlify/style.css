@@ -1,11 +1,7 @@
 @font-face {
   font-family: "PixelMPlus10";
-  src: url("fonts/PixelMplus10-Regular.woff") format("woff");
-  font-display: swap;
-}
-@font-face {
-  font-family: "PixelMPlus10";
-  src: url("fonts/PixelMplus10-Regular.woff2") format("woff2");
+  src: url("fonts/PixelMplus10-Regular.woff") format("woff"),
+    url("fonts/PixelMplus10-Regular.woff2") format("woff2");
   font-display: swap;
 }
 
@@ -249,12 +245,11 @@ a {
   }
 }
 
+/* removes animation if the user has set preference to do so */
 @media (prefers-reduced-motion) {
-  /* 
-    add all classes with animations here 
-    I'm assuming that the dark mode toggle 
-    won't be a problem.
-  */
+  .toggle__indicator {
+    transition: none;
+  }
   .new__clicked {
     animation: none;
   }
