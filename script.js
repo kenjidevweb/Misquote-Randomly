@@ -44,7 +44,19 @@ darkModeBtn.addEventListener("click", () => {
   }
 });
 
-// gets quotes misattribute them and gets an image based on the authors name
+const animateButton = () => {
+  const newBtnIcon = document.querySelector(".icon--new");
+
+  newBtnIcon.classList.add("new__clicked");
+  newBtnIcon.style.animationName = "none"; // setting the animation name to none will stop the animation.
+  requestAnimationFrame(() => {
+    // using requestAnimationFrame and settingTimeout to 0 fixes a problem with firefox.
+    setTimeout(() => {
+      newBtnIcon.style.animationName = ""; // setting the animation name to empty quotes will make it
+    }, 0); // fallback to the name we set on the css file. (making the animation start again)
+  });
+}
+
 
 const newQuote = async () => {
   const quoteAuthor = document.querySelector(".quote-author");
@@ -85,17 +97,7 @@ const newQuote = async () => {
 
 const newBtn = document.querySelector(".new");
 newBtn.addEventListener("click", () => {
-  const newBtnIcon = document.querySelector(".icon--new");
-
-  newBtnIcon.classList.add("new__clicked");
-  newBtnIcon.style.animationName = "none"; // setting the animation name to none will stop the animation.
-  requestAnimationFrame(() => {
-    // using requestAnimationFrame and settingTimeout to 0 fixes a problem with firefox.
-    setTimeout(() => {
-      newBtnIcon.style.animationName = ""; // setting the animation name to empty quotes will make it
-    }, 0); // fallback to the name we set on the css file. (making the animation start again)
-  });
-
+  animateButton();
   newQuote();
 });
 
@@ -120,11 +122,31 @@ downloadBtn.addEventListener("click", () => {
   downloadQuote();
 });
 
-const fontToggleBtn = document.querySelector(".font");
+// function for toggling the font
 
-fontToggleBtn.addEventListener("click", () => {
+const toggleFont = () => {
   const quoteFont = document.querySelector(".card");
   const fontDisplay = document.querySelector(".font-icon");
   quoteFont.classList.toggle("changeFont");
   fontDisplay.classList.toggle("changeFont");
+}
+
+const fontToggleBtn = document.querySelector(".font");
+
+fontToggleBtn.addEventListener("click", () => {
+  toggleFont();
 });
+
+// shortcuts
+
+document.addEventListener("keydown", (event) => {
+  const shortcuts = {
+    n: () => { animateButton(); newQuote() },
+    s: () => { downloadQuote() },
+    f: () => { toggleFont() }
+  }
+  const keyPressed = event.key.toLowerCase(); // Converting to lowercase so the shortcuts will work even if the user has capitalization activated (caps or holding shift)
+  if (shortcuts[keyPressed] != undefined) { // if the key pressed matches an object key execute its value function
+    shortcuts[keyPressed]()
+  }
+})
