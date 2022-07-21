@@ -1,6 +1,6 @@
 # Misquote Randomly!
 
-> add quote about context being part of "masterpiece images" here when I remember it.   
+> To get slightly more relevant images please get your own api key at https://unsplash.com/developers and paste it after "client_id=", it's in line 86 of the script.js file
 
 ## Desktop:
 

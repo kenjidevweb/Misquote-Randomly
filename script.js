@@ -83,12 +83,12 @@ const newQuote = async () => {
   }
   try {
     const resImg = await fetch(
-      `https://api.unsplash.com/search/photos?query=${quoteAuthor.textContent}&per_page=1&orientation=portrait&client_id=kop-Le_jMIaVSWUr02BVHqUXsXC1NADHYKc2X8m_Owg`
+      `https://api.unsplash.com/search/photos?query=${quoteAuthor.textContent}&per_page=1&orientation=portrait&client_id=` // your api key here
     );
     const dataImg = await resImg.json();
     cardImg.style.backgroundImage = `url(${dataImg.results[0].urls.small})`;
   } catch (e) {
-    console.log("error with unsplash api");
+    console.log("if you'd like to get slightly more relevant images please get an api key at https://unsplash.com/developers and then paste it after client_id=");
     cardImg.style.backgroundImage = `url(https://source.unsplash.com/random/300x200?sig=${Math.random()}`;
   }
 };
