@@ -55,8 +55,7 @@ const animateButton = () => {
       newBtnIcon.style.animationName = ""; // setting the animation name to empty quotes will make it
     }, 0); // fallback to the name we set on the css file. (making the animation start again)
   });
-}
-
+};
 
 const newQuote = async () => {
   const quoteAuthor = document.querySelector(".quote-author");
@@ -88,7 +87,9 @@ const newQuote = async () => {
     const dataImg = await resImg.json();
     cardImg.style.backgroundImage = `url(${dataImg.results[0].urls.small})`;
   } catch (e) {
-    console.log("if you'd like to get slightly more relevant images please get an api key at https://unsplash.com/developers and then paste it after client_id=");
+    console.log(
+      "if you'd like to get slightly more relevant images please get an api key at https://unsplash.com/developers and then paste it after client_id="
+    );
     cardImg.style.backgroundImage = `url(https://source.unsplash.com/random/300x200?sig=${Math.random()}`;
   }
 };
@@ -129,7 +130,7 @@ const toggleFont = () => {
   const fontDisplay = document.querySelector(".font-icon");
   quoteFont.classList.toggle("changeFont");
   fontDisplay.classList.toggle("changeFont");
-}
+};
 
 const fontToggleBtn = document.querySelector(".font");
 
@@ -141,12 +142,20 @@ fontToggleBtn.addEventListener("click", () => {
 
 document.addEventListener("keydown", (event) => {
   const shortcuts = {
-    n: () => { animateButton(); newQuote() },
-    s: () => { downloadQuote() },
-    f: () => { toggleFont() }
-  }
+    n: () => {
+      animateButton();
+      newQuote();
+    },
+    s: () => {
+      downloadQuote();
+    },
+    f: () => {
+      toggleFont();
+    },
+  };
   const keyPressed = event.key.toLowerCase(); // Converting to lowercase so the shortcuts will work even if the user has capitalization activated (caps or holding shift)
-  if (shortcuts[keyPressed] != undefined) { // if the key pressed matches an object key execute its value function
-    shortcuts[keyPressed]()
+  if (shortcuts[keyPressed] != undefined) {
+    // if the key pressed matches an object key execute its value function
+    shortcuts[keyPressed]();
   }
-})
+});
