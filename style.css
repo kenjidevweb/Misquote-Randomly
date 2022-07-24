@@ -1,7 +1,6 @@
 @font-face {
   font-family: "PixelMPlus10";
-  src: url("fonts/PixelMplus10-Regular.woff") format("woff"),
-    url("fonts/PixelMplus10-Regular.woff2") format("woff2");
+  src: url("fonts/PixelMplus10-Regular.woff2") format("woff2");
   font-display: swap;
 }
 
@@ -52,7 +51,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 60px;
+  margin-top: 1rem;
 }
 
 a {
