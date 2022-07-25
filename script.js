@@ -28,7 +28,7 @@ if (darkMode) {
     }
   } else {
     /* if not supported */
-    console.log("you should download google chrome");
+    console.log("");
   }
 }
 
@@ -64,7 +64,7 @@ const newQuote = async () => {
   // try to use goquotes api, if it fails use type fit api instead, this is a fallback in case one of them dies
   try {
     const resQuote = await fetch(
-      "https://goquotes-api.herokuapp.com/api/v1/random?count=2"
+      "https://goquotes-api.herokuapp.com/api/v1/random?count=2" // at the time I'm testing this, 19:01 25 July 2022 the api isn't working, i'll leave this in case it comes back
     );
     const dataQuote = await resQuote.json();
     quote.textContent = `${dataQuote.quotes[0].text}`;
