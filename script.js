@@ -1,4 +1,4 @@
-/* This fixes the error with the slider moving every time the page is reloaded in dark mode */
+/* This helps with the error with the slider moving every time the page is reloaded in dark mode*/
 
 document.addEventListener("DOMContentLoaded", () => {
   let delayTransitions = document.getElementById("delay-transition");
@@ -27,8 +27,7 @@ if (darkMode) {
       document.body.classList.remove("dark");
     }
   } else {
-    /* if not supported */
-    console.log("");
+    // I don't know if I should do something here, https://caniuse.com/?search=prefers-color-scheme
   }
 }
 
@@ -48,7 +47,7 @@ const animateButton = () => {
   const newBtnIcon = document.querySelector(".icon--new");
 
   newBtnIcon.classList.add("new__clicked");
-  newBtnIcon.style.animationName = "none"; // setting the animation name to none will stop the animation.
+  newBtnIcon.style.animationName = "none";
   requestAnimationFrame(() => {
     // using requestAnimationFrame and settingTimeout to 0 fixes a problem with firefox.
     setTimeout(() => {
@@ -61,10 +60,10 @@ const newQuote = async () => {
   const quoteAuthor = document.querySelector(".quote-author");
   const quote = document.querySelector(".quote");
   const cardImg = document.querySelector(".card");
-  // try to use goquotes api, if it fails use type fit api instead, this is a fallback in case one of them dies
   try {
     const resQuote = await fetch(
-      "https://goquotes-api.herokuapp.com/api/v1/random?count=2" // at the time I'm testing this, 19:01 25 July 2022 the api isn't working, i'll leave this in case it comes back
+      // After "googling" for a bit I think it's a problem with their servers, I've tried to add the useCORS: true header but that didn't help either
+      "https://goquotes-api.herokuapp.com/api/v1/random?count=2"
     );
     const dataQuote = await resQuote.json();
     quote.textContent = `${dataQuote.quotes[0].text}`;
@@ -72,9 +71,11 @@ const newQuote = async () => {
   } catch (e) {
     const resQuoteBackup = await fetch(`https://type.fit/api/quotes`);
     const dataQuoteBackup = await resQuoteBackup.json();
-    console.log("error with goquotes api");
+    console.log(
+      "error with goquotes api, After 'googling' for a bit I think it's a problem with their servers, I've tried to add the useCORS: true header but that didn't help either"
+    );
     quote.textContent = `${
-      dataQuoteBackup[Math.floor(Math.random() * 333)].text // generate a number from 0 to 333 and use it as the index of the json we're getting data from
+      dataQuoteBackup[Math.floor(Math.random() * 333)].text // generate a random num to get text data from
     }`;
     quoteAuthor.textContent = `- ${
       dataQuoteBackup[Math.floor(Math.random() * 333)].author
@@ -94,19 +95,15 @@ const newQuote = async () => {
   }
 };
 
-// Animation on the new button
-
 const newBtn = document.querySelector(".new");
 newBtn.addEventListener("click", () => {
   animateButton();
   newQuote();
 });
 
-// Function for downloading the quote
-
 const downloadQuote = () => {
   const quoteImg = document.querySelector(".card");
-  /* "useCORS: true" enables saved online images to show up on the downloaded quote */
+  /* "useCORS: true" enables online images to show up on the downloaded quote */
   html2canvas(quoteImg, { useCORS: true }).then((canvas) => {
     const base64img = canvas.toDataURL("quote/png");
     var anchor = document.createElement("a");
@@ -123,8 +120,6 @@ downloadBtn.addEventListener("click", () => {
   downloadQuote();
 });
 
-// function for toggling the font
-
 const toggleFont = () => {
   const quoteFont = document.querySelector(".card");
   const fontDisplay = document.querySelector(".font-icon");
@@ -137,8 +132,6 @@ const fontToggleBtn = document.querySelector(".font");
 fontToggleBtn.addEventListener("click", () => {
   toggleFont();
 });
-
-// shortcuts
 
 document.addEventListener("keydown", (event) => {
   const shortcuts = {
