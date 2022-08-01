@@ -1,3 +1,11 @@
+let randomNumber = Math.floor(Math.random() * 333);
+/* 
+  I made this a variable variable because I want to keep track of this random number
+  I'm doing this so the download function still works when using the fallbacks, because
+  of the unique id of each image 
+/
+
+
 /* This helps with the error with the slider moving every time the page is reloaded in dark mode*/
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -75,11 +83,9 @@ const newQuote = async () => {
       "error with goquotes api, After 'googling' for a bit I think it's a problem with their servers, I've tried to add the useCORS: true header but that didn't help either"
     );
     quote.textContent = `${
-      dataQuoteBackup[Math.floor(Math.random() * 333)].text // generate a random num to get text data from
+      dataQuoteBackup[randomNumber].text // generate a random num to get text data from
     }`;
-    quoteAuthor.textContent = `- ${
-      dataQuoteBackup[Math.floor(Math.random() * 333)].author
-    }`;
+    quoteAuthor.textContent = `- ${dataQuoteBackup[randomNumber + 1].author}`; // plus one to change the author, misquoting him
   }
   try {
     const resImg = await fetch(
@@ -91,7 +97,7 @@ const newQuote = async () => {
     console.log(
       "if you'd like to get slightly more relevant images please get an api key at https://unsplash.com/developers and then paste it after client_id="
     );
-    cardImg.style.backgroundImage = `url(https://source.unsplash.com/random/300x200?sig=${Math.random()}`;
+    cardImg.style.backgroundImage = `url(https://picsum.photos/id/${randomNumber}/${randomNumber}/${randomNumber})`;
   }
 };
 
@@ -99,6 +105,7 @@ const newBtn = document.querySelector(".new");
 newBtn.addEventListener("click", () => {
   animateButton();
   newQuote();
+  randomNumber = Math.floor(Math.random() * 333);
 });
 
 const downloadQuote = () => {
@@ -111,6 +118,7 @@ const downloadQuote = () => {
     anchor.setAttribute("download", "quote.png");
     anchor.click();
     anchor.remove();
+    randomNumber = Math.floor(Math.random() * 333);
   });
 };
 
